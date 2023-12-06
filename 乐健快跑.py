@@ -1,6 +1,5 @@
 import os.path
 import re
-import match as match
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -115,16 +114,16 @@ for urll in ZD.values():
                     break
                 url1 = "https://cpes.legym.cn/running/app/getTotalRunning"
                 header = {"Authorization": 'Bearer ' + key, "Organization": "8a9780947c7504ee017c97146025601b","User-Agent": "Mozilla/5.0 (Linux; Android 12; Redmi K30 Pro Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 uni-app Html5Plus/1.0 (Immersed/34.909092)","Content-Type": "application/json", "Content-Length": "64", "Host": "cpes.legym.cn","Connection": "Keep-Alive", "Accept-Encoding": "gzip","Cookie": "JSESSIONID=AF370BD7CD6708E22DF5F5110699B97D"}
-               if part == 'a' or part == 'b' or part =='c':
+                if part == 'a' or part == 'b' or part =='c':
                         body = {"hasRule": True, "semesterId": "8a97804a8a3b7277018a3efb754f1eaf"}
-                #if part == 'a' or part == 'b' or part == 'c':
-                  #      body = {"hasRule": True, "semesterId": "8a9780cb8a49d49f018a4f6331da0139"}
+               #if part == 'a' or part == 'b' or part == 'c':
+                #      body = {"hasRule": True, "semesterId": "8a9780cb8a49d49f018a4f6331da0139"}
                 kmnum = requests.post(url1, headers=header, json=body)
                 if kmnum.status_code == 200:
                         print("",end='')
                 else:
-                        print("数据异常，刷入失败")
-                        break
+                     print("数据异常，刷入失败")
+                     break
                 kmnum = BeautifulSoup(kmnum.text, "html.parser")
                 kmmm = re.compile(r'\"totalMileage\":\"(.*?)\"')
                 kmmmm = re.search(kmmm, kmnum.prettify())
